@@ -6,9 +6,8 @@ Educativo y de Aprendizaje Personal
 - [Requisitos](#requisitos)
 - [Configuración del Entorno](#configuración-del-entorno)
 - [Activación del Entorno](#Activación-del-Entorno)
-- [Instalar Django y Guardar dependencias](Instalar-Django-y-Guardar-dependencias)
+- [Configuración Inicial](#configuración-inicial)
 - [Pasos del Proyecto](#pasos-del-proyecto)
-  - [Configuración Inicial](#configuración-inicial)
   - [Configuración del Proyecto](#configuración-del-proyecto)
   - [Creación de Vistas y Modelos](#creación-de-vistas-y-modelos)
  
