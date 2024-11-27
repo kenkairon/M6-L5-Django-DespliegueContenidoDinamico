@@ -286,3 +286,178 @@ Educativo y de Aprendizaje Personal
 
         STATIC_URL = 'static/'
         STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+12. crear la carpeta static/css/styles.css
+ ```bash
+/* Estilo para los elementos del menú sin la clase nav-link */
+.custom-nav-item {
+    font-size: 16px;
+    color: #ffffff;
+    /* Color blanco para el texto */
+    padding: 8px 16px;
+    /* Espaciado interno para los enlaces */
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    /* Eliminamos el subrayado */
+    transition: background-color 0.3s, color 0.3s;
+    /* Transición suave para los efectos de hover */
+}
+
+/* Efecto de hover para los elementos */
+.custom-nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Fondo suave al pasar el ratón */
+    color: #f1f1f1;
+    /* Color más claro al pasar el ratón */
+}
+
+/* Estilo para los iconos dentro de los enlaces */
+.custom-nav-item i {
+    margin-right: 8px;
+    /* Espacio entre el icono y el texto */
+}
+
+/* Efecto de hover para los elementos */
+.custom-nav-item:hover {
+    background-color: #00bcd4;
+    /* Fondo celeste al pasar el ratón */
+    color: #ffffff;
+    /* Color blanco al pasar el ratón */
+}
+
+
+/* Efecto de transición para enlaces y botones */
+.nav-link,
+.navbar-toggler {
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.navbar-toggler:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Fondo al pasar el mouse */
+    border-radius: 5px;
+    /* Bordes redondeados */
+}
+
+/* Estilo para la barra de navegación */
+nav {
+    background-color: #f8f9fa;
+    /* Fondo claro */
+    border-right: 1px solid #ddd;
+    /* Borde sutil */
+}
+
+/* Estilo para los elementos de la lista */
+.nav-item {
+    transition: background-color 0.3s, transform 0.3s;
+    /* Transición suave */
+}
+
+/* Estilo para los enlaces */
+.nav-link {
+    color: #333;
+    /* Color oscuro para los enlaces */
+    font-weight: 500;
+    padding: 12px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    /* Centra el icono y el texto */
+    transition: color 0.3s, background-color 0.3s;
+    /* Transiciones suaves */
+}
+
+/* Iconos y texto */
+.nav-link i {
+    margin-right: 10px;
+    /* Espacio entre el icono y el texto */
+}
+
+/* Efecto hover en el enlace */
+.nav-link:hover {
+    background-color: #3498db;
+    /* Fondo azul elegante */
+    color: #fff;
+    /* Color blanco para el texto */
+    transform: translateX(10px);
+    /* Desplazamiento ligero hacia la derecha */
+}
+
+/* Efecto hover en el item de la lista */
+.nav-item:hover {
+    background-color: #f1f1f1;
+    /* Fondo claro al pasar el mouse */
+    border-radius: 5px;
+    /* Bordes redondeados */
+}
+
+/* Cuando el enlace está activo (seleccionado) */
+.nav-link.active {
+    background-color: #3498db;
+    /* Fondo azul cuando está activo */
+    color: #fff;
+    /* Texto blanco */
+}
+
+/* Efecto hover para iconos también */
+.nav-link i {
+    transition: transform 0.3s;
+    /* Suaviza el movimiento del icono */
+}
+
+.nav-link:hover i {
+    transform: rotate(10deg);
+    /* Rotación ligera del icono al pasar el mouse */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #343a40;
+    /* Fondo oscuro */
+    color: #fff;
+    /* Color de texto blanco */
+    padding: 40px 0;
+    /* Padding mayor para más espacio */
+    font-size: 14px;
+    /* Tamaño de fuente pequeño y legible */
+}
+
+footer .container {
+    max-width: 1140px;
+    /* Limitar el ancho del footer */
+    margin: 0 auto;
+}
+
+/* Ajustes de los iconos sociales */
+footer .social-icons a {
+    font-size: 20px;
+    /* Tamaño de los iconos */
+    transition: transform 0.3s, color 0.3s;
+    /* Transición suave */
+}
+
+footer .social-icons a:hover {
+    color: #3498db;
+    /* Color azul cuando se pasa el mouse */
+    transform: translateY(-5px);
+    /* Elevación del icono al pasar el mouse */
+}
+
+/* Espaciado entre iconos */
+footer .social-icons a:not(:last-child) {
+    margin-right: 15px;
+    /* Espacio entre los iconos */
+}
+
+/* Estilo para el texto en el pie de página */
+footer p {
+    margin-bottom: 0;
+    /* Sin margen inferior */
+}
+
+/* Efecto de sombra suave en el pie de página */
+footer {
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
