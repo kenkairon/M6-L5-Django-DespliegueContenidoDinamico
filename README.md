@@ -242,3 +242,48 @@ Educativo y de Aprendizaje Personal
     # Create your views here.
     def nombre(request):
         return render(request, 'index.html', {'messages':'Hola y bienvenido'})
+
+13. proyecto_educativo/urls.py
+    ```bash
+    from django.contrib import admin
+    from django.urls import path, include
+    from principal import views
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('',views.nombre, name='nombre'),
+    ]
+14. python manage.py migrate
+15. Creamos en la aplicacion  principal/templates/index.html
+    ```bash
+    {% extends 'base.html' %}
+    {% block title %}Inicio{% endblock %}
+    {% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4 alert alert-primary">¡Hola Mundo!</h1>
+        <!-- AQui va poner la variable-->
+        <p class="lead">{{ message }}</p>
+        <hr class="my-4">
+        <p class="alert alert-success">Este es un proyecto educativo con Django.</p>
+    </div>
+    {% endblock %}
+16. En el proyecto_educativo/settings.py para poder trabajar con la carpeta static y los csss
+    ```bash
+        import os
+        # Internationalization
+        # https://docs.djangoproject.com/en/5.1/topics/i18n/
+
+        LANGUAGE_CODE = 'en-us'
+
+        TIME_ZONE = 'UTC'
+
+        USE_I18N = True
+
+        USE_TZ = True
+
+
+        # Static files (CSS, JavaScript, Images)
+        # https://docs.djangoproject.com/en/5.1/howto/static-files/
+
+        STATIC_URL = 'static/'
+        STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
