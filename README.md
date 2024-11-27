@@ -105,11 +105,11 @@ Educativo y de Aprendizaje Personal
         },
     ]
     
-11. creo una carpeta templates/base.html y agregas {% load static %} al principio
+11. creo una carpeta templates/base.html y agregas {% load static %} al principio lo descomentas y funciona
     ```bash
+    <!--{% load static %}-->
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
