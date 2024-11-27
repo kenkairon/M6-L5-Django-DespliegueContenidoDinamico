@@ -103,14 +103,6 @@ Educativo y de Aprendizaje Personal
     ]
 
 11. Creo una carpeta templates/base.html
-# EduDashboard
-
-Este proyecto es una plantilla para un dashboard educativo que incluye navegación, gestión de estudiantes, cursos y reportes.
-
-## Código HTML
-
-A continuación, se muestra el código del proyecto en un bloque de código con resaltado. Puedes copiarlo y adaptarlo a tus necesidades:
-
 ```bash
 {% load static %}
 <!DOCTYPE html>
@@ -237,5 +229,4 @@ A continuación, se muestra el código del proyecto en un bloque de código con 
     </footer>
     {% bootstrap_javascript jquery="full" %}
 </body>
-
 </html>
