@@ -111,7 +111,6 @@ Educativo y de Aprendizaje Personal
     {% load static %}
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,9 +122,7 @@ Educativo y de Aprendizaje Personal
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         {% bootstrap_css %}
     </head>
-
     <body class="bg-light">
-
         <!-- Header -->
         <header class="navbar navbar-expand-lg navbar-dark bg-primary p-3">
             <a class="navbar-brand" href="#">EduDashboard</a>
@@ -148,8 +145,6 @@ Educativo y de Aprendizaje Personal
                 </ul>
             </div>
         </header>
-
-
         <div class="d-flex">
             <!-- Sidebar -->
             <nav class="bg-light border-right" style="width: 250px; height: 100vh;">
@@ -181,7 +176,6 @@ Educativo y de Aprendizaje Personal
                             navegar por las secciones.</p>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card shadow">
@@ -217,7 +211,6 @@ Educativo y de Aprendizaje Personal
                 {% endblock %}
             </main>
         </div>
-
         <!-- Footer -->
         <footer class="bg-dark text-white text-center p-4 mt-auto">
             <div class="container">
@@ -245,12 +238,12 @@ Educativo y de Aprendizaje Personal
 
 12. principal/views.py
     ```bash
-        from django.shortcuts import render
+    from django.shortcuts import render
 
-        # Create your views here.
-        def nombre(request):
-            return render(request, 'index.html', {'messages':'Hola y bienvenido'})
-
+    # Create your views here.
+    def nombre(request):
+        return render(request, 'index.html', {'messages':'Hola y bienvenido'})
+   
 13. proyecto_educativo/urls.py
     ```bash
         from django.contrib import admin
