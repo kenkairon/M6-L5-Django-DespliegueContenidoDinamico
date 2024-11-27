@@ -88,29 +88,29 @@ Educativo y de Aprendizaje Personal
 
 10. Configuración del proyecto: settings.py
 
-   ```python
-    TEMPLATES = [
-        {
-            'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [BASE_DIR,'templates'],
-            'APP_DIRS': True,
-            'OPTIONS': {
-                'context_processors': [
-                    'django.template.context_processors.debug',
-                    'django.template.context_processors.request',
-                    'django.contrib.auth.context_processors.auth',
-                    'django.contrib.messages.context_processors.messages',
-                ],
-            },
+```python
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR,'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+        ],
         },
-    ]
+    },
+]
 ## Creación de vistas y modelos
 
 11. principal/views.py
-    ```bash
-    from django.shortcuts import render
+```python 
+from django.shortcuts import render
 
-    # Create your views here.
-    def nombre(request):
-        return render(request, 'index.html', {'messages':'Hola y bienvenido'})
+   
+def nombre(request):
+    return render(request, 'index.html', {'messages':'Hola y bienvenido'})
 
