@@ -85,7 +85,7 @@ Educativo y de Aprendizaje Personal
     'bootstrap4',
     ]
 10. Configuración del proyecto: settings.py
-En el archivo settings.py, asegúrate de configurar las plantillas como se muestra a continuación:
+
    ```bash
     TEMPLATES = [
         {
@@ -104,7 +104,7 @@ En el archivo settings.py, asegúrate de configurar las plantillas como se muest
     ]
 
 11. Crear la carpeta templates y el archivo base.html
-Dentro de la carpeta templates, crea un archivo llamado base.html con el siguiente contenido:
+
 ```bash
 {% load static %}
 <!DOCTYPE html>
