@@ -105,9 +105,7 @@ Educativo y de Aprendizaje Personal
         },
     ]
     
-11. creo una carpeta templates/base.html
-    
-    {% load static %}
+11. creo una carpeta templates/base.html y agregas {% load static %} al principio
     ```bash
     <!DOCTYPE html>
     <html lang="en">
