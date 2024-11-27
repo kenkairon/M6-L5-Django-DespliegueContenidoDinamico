@@ -270,6 +270,29 @@ Educativo y de Aprendizaje Personal
         <p class="alert alert-success">Este es un proyecto educativo con Django.</p>
     </div>
     {% endblock %}
+
+17. En el proyecto_educativo/settings.py para poder trabajar con la carpeta static y los csss
+    ```bash
+        import os
+        # Internationalization
+        # https://docs.djangoproject.com/en/5.1/topics/i18n/
+
+        LANGUAGE_CODE = 'en-us'
+
+        TIME_ZONE = 'UTC'
+
+        USE_I18N = True
+
+        USE_TZ = True
+
+
+        # Static files (CSS, JavaScript, Images)
+        # https://docs.djangoproject.com/en/5.1/howto/static-files/
+
+        STATIC_URL = 'static/'
+        STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+
 16. Crear static/css/styles.css
     ```bash
     /* Estilo para los elementos del menú sin la clase nav-link */
@@ -444,26 +467,6 @@ Educativo y de Aprendizaje Personal
     footer {
         box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     }
-17. En el proyecto_educativo/settings.py para poder trabajar con la carpeta static y los csss
-    ```bash
-        import os
-        # Internationalization
-        # https://docs.djangoproject.com/en/5.1/topics/i18n/
-
-        LANGUAGE_CODE = 'en-us'
-
-        TIME_ZONE = 'UTC'
-
-        USE_I18N = True
-
-        USE_TZ = True
-
-
-        # Static files (CSS, JavaScript, Images)
-        # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-        STATIC_URL = 'static/'
-        STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 
