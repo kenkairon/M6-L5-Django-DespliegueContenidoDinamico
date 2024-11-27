@@ -104,6 +104,7 @@ Educativo y de Aprendizaje Personal
             },
         },
     ]
+
 ## Creación de vistas y modelos
 11. creo una carpeta  templates .... templates/base.html
     ```bash
@@ -240,26 +241,26 @@ Educativo y de Aprendizaje Personal
 
         {% bootstrap_javascript jquery="full" %}
     </body>
-
     </html>
+
 12. principal/views.py
     ```bash
-    from django.shortcuts import render
+        from django.shortcuts import render
 
-    # Create your views here.
-    def nombre(request):
-        return render(request, 'index.html', {'messages':'Hola y bienvenido'})
+        # Create your views here.
+        def nombre(request):
+            return render(request, 'index.html', {'messages':'Hola y bienvenido'})
 
 13. proyecto_educativo/urls.py
     ```bash
-    from django.contrib import admin
-    from django.urls import path, include
-    from principal import views
+        from django.contrib import admin
+        from django.urls import path, include
+        from principal import views
 
-    urlpatterns = [
-        path('admin/', admin.site.urls),
-        path('',views.nombre, name='nombre'),
-    ]
+        urlpatterns = [
+            path('admin/', admin.site.urls),
+            path('',views.nombre, name='nombre'),
+        ]
 
 14. python manage.py migrate
 
@@ -452,24 +453,24 @@ Educativo y de Aprendizaje Personal
     }
 17. En el proyecto_educativo/settings.py para poder trabajar con la carpeta static y los csss
     ```bash
-    import os
-    # Internationalization
-    # https://docs.djangoproject.com/en/5.1/topics/i18n/
+        import os
+        # Internationalization
+        # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-    LANGUAGE_CODE = 'en-us'
+        LANGUAGE_CODE = 'en-us'
 
-    TIME_ZONE = 'UTC'
+        TIME_ZONE = 'UTC'
 
-    USE_I18N = True
+        USE_I18N = True
 
-    USE_TZ = True
+        USE_TZ = True
 
 
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/5.1/howto/static-files/
+        # Static files (CSS, JavaScript, Images)
+        # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-    STATIC_URL = 'static/'
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+        STATIC_URL = 'static/'
+        STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 
