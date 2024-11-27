@@ -88,7 +88,7 @@ Educativo y de Aprendizaje Personal
 
 10. Configuración del proyecto: settings.py
 
-   ```bash
+   ```python
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -106,7 +106,7 @@ Educativo y de Aprendizaje Personal
     ]
 
 11. Crear la carpeta templates y el archivo base.html
-   ```python html javascript css
+   
     {% load static %}
     <!DOCTYPE html>
     <html lang="en">
