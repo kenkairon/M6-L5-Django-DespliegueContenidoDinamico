@@ -84,8 +84,9 @@ Educativo y de Aprendizaje Personal
     'principal',
     'bootstrap4',
     ]
-10. vamos a la configuración proyecto_eductativo/setting.py
-   ```bash
+10. Configuración del proyecto: settings.py
+En el archivo settings.py, asegúrate de configurar las plantillas como se muestra a continuación:
+   
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -102,8 +103,9 @@ Educativo y de Aprendizaje Personal
         },
     ]
 
-11. Creo una carpeta templates/base.html
-```bash
+11. Crear la carpeta templates y el archivo base.html
+Dentro de la carpeta templates, crea un archivo llamado base.html con el siguiente contenido:
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
