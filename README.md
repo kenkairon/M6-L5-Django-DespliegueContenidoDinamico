@@ -85,7 +85,7 @@ Educativo y de Aprendizaje Personal
     'principal',
     'bootstrap4',
     ]
-    
+
 10. Configuración del proyecto: settings.py
 
    ```bash
@@ -107,7 +107,8 @@ Educativo y de Aprendizaje Personal
 
 11. Crear la carpeta templates y el archivo base.html
 
-    ```bash
+   ```markdown
+   ```python 
     {% load static %}
     <!DOCTYPE html>
     <html lang="en">
