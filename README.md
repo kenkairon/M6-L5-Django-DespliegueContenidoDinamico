@@ -106,7 +106,7 @@ Educativo y de Aprendizaje Personal
     ]
 
 ## Creación de vistas y modelos
-11. creo una carpeta  templates .... templates/base.html
+11. creo una carpeta  templates/base.html
     ```bash
     {% load static %}
     <!DOCTYPE html>
