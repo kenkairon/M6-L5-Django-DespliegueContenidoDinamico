@@ -106,9 +106,7 @@ Educativo y de Aprendizaje Personal
     ]
 
 11. Crear la carpeta templates y el archivo base.html
-
-   ```markdown
-   ```python 
+   ```python html javascript css
     {% load static %}
     <!DOCTYPE html>
     <html lang="en">
