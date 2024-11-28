@@ -20,5 +20,8 @@ from principal import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.nombre, name='nombre'),
+    path('', include('principal.urls')),  # Inicio
+    path('estudiantes/', include('estudiantes.urls')),  # Estudiantes
+    path('cursos/', include('cursos.urls')),  # Cursos
+    path('reportes/', include('reportes.urls')),  # Reportes
 ]

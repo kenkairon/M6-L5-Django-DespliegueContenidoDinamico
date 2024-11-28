@@ -10,50 +10,15 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {% bootstrap_css %}
 </head>
 
 <body class="bg-light">
-    <!-- Header -->
-    <header class="navbar navbar-expand-lg navbar-dark bg-primary p-3">
-        <a class="navbar-brand" href="#">EduDashboard</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="custom-nav-item rounded-sm" href="#">
-                        <i class="bi bi-person-circle"></i> Perfil
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="custom-nav-item rounded-sm" href="#">
-                        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </header>
+    {% include 'include/header.html' %}
     <div class="d-flex">
-        <!-- Sidebar -->
-        <nav class="bg-light border-right" style="width: 250px; height: 100vh;">
-            <ul class="nav flex-column p-3">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#"><i class="bi bi-house-door"></i> Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="bi bi-people"></i> Estudiantes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="bi bi-book"></i> Cursos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="bi bi-bar-chart"></i> Reportes</a>
-                </li>
-            </ul>
-        </nav>
+        {% include 'include/siderbar.html' %}
         <!-- Main Content -->
         <main class="flex-grow-1 p-4">
             {% block content %}
@@ -100,28 +65,13 @@
             </div>
             {% endblock %}
         </main>
+
     </div>
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center p-4 mt-auto">
-        <div class="container">
-            <p class="mb-0">© 2024 EduDashboard - Todos los derechos reservados.</p>
-            <div class="social-icons mt-3">
-                <a href="#" class="text-white me-3">
-                    <i class="bi bi-facebook"></i>
-                </a>
-                <a href="#" class="text-white me-3">
-                    <i class="bi bi-twitter"></i>
-                </a>
-                <a href="#" class="text-white me-3">
-                    <i class="bi bi-linkedin"></i>
-                </a>
-                <a href="#" class="text-white me-3">
-                    <i class="bi bi-instagram"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
+    {% include 'include/footer.html' %}
     {% bootstrap_javascript jquery="full" %}
+    <!-- JavaScript principal -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'js/main.js' %}" defer></script>
 </body>
 
 </html>

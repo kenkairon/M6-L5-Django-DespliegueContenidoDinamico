@@ -1,5 +1,10 @@
 from django.shortcuts import render
 
-# Create your views here.
-def nombre(request):
-    return render(request, 'index.html', {'messages':'Hola y bienvenido'})
+def index(request):
+    context = {
+        'message': 'Bienvenido a EduDashboard',
+        'description': 'Esta plataforma te ayuda a organizar información educativa de manera sencilla.',
+        'cta': 'Explorar Estudiantes',
+        'cta_link': '/estudiantes/'
+    }
+    return render(request, 'principal/index.html', context)

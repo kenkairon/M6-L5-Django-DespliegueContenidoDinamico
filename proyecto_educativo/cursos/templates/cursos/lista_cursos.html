@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Cursos{% endblock %}
+{% block content %}
+<h1 class="mt-4">Cursos</h1>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped" style="border-radius: 10px; overflow: hidden;">
+        <!-- Encabezado con bordes redondeados -->
+        <thead class="bg-dark text-white" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <tr>
+                <th>Nombre</th>
+                <th>Duración (horas)</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in cursos %}
+            <tr>
+                <td>{{ curso.nombre }}</td>
+                <td>{{ curso.duracion }}</td>
+                <td>{{ curso.descripcion }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

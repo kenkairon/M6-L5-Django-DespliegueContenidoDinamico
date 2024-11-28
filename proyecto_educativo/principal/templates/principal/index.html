@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Bienvenida{% endblock %}
+{% block content %}
+<div class="text-center mt-5">
+    <h1 class="display-4 alert alert-primary">{{message}}</h1>
+    <h2 class="display-5 lead alert alert-success">{{description}}</h2>
+    <hr class="my-4">
+    <p>Usa el menú de navegación lateral para explorar las funcionalidades disponibles.</p>
+    <a class="btn btn-primary btn-lg" href="/estudiantes/" role="button">
+        <i class="bi bi-people"></i> Explorar Estudiantes
+    </a>
+    <a class="btn btn-success btn-lg" href="/cursos/" role="button">
+        <i class="bi bi-book"></i> Explorar Cursos
+    </a>
+    <a class="btn btn-info btn-lg" href="/reportes/" role="button">
+        <i class="bi bi-bar-chart"></i> Explorar Reportes
+    </a>
+</div>
+{% endblock %}

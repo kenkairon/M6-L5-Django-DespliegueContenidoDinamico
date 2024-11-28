@@ -1,0 +1,46 @@
+<!-- Main Content -->
+<main class="flex-grow-1 p-4">
+    {% block content %}
+    <div class="card shadow mb-4">
+        <div class="card-header bg-info text-white">
+            <h2 class="h4 mb-0">Bienvenido al Dashboard</h2>
+        </div>
+        <div class="card-body">
+            <p>Aquí puedes administrar tus datos de estudiantes, cursos y más. Utiliza el menú lateral para
+                navegar por las secciones.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-people-fill text-primary fs-1 mb-3"></i>
+                    <h5 class="card-title">Estudiantes</h5>
+                    <p class="card-text">Gestión de todos los estudiantes registrados.</p>
+                    <a href="#" class="btn btn-primary">Ver más</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-journal-bookmark-fill text-success fs-1 mb-3"></i>
+                    <h5 class="card-title">Cursos</h5>
+                    <p class="card-text">Gestiona todos los cursos disponibles.</p>
+                    <a href="#" class="btn btn-success">Ver más</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-graph-up-arrow text-warning fs-1 mb-3"></i>
+                    <h5 class="card-title">Reportes</h5>
+                    <p class="card-text">Consulta los reportes generados.</p>
+                    <a href="#" class="btn btn-warning">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</main>

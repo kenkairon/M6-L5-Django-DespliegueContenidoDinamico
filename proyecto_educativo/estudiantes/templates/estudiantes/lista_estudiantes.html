@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Estudiantes{% endblock %}
+{% block content %}
+<h1 class="my-4">Estudiantes</h1>
+
+<table class="table table-bordered table-striped" style="border-radius: 10px; overflow: hidden;">
+    <!-- Encabezado con bordes redondeados -->
+    <thead class="bg-dark text-white" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for estudiante in estudiantes %}
+        <tr>
+            <td>{{ estudiante.nombre }}</td>
+            <td>{{ estudiante.apellido }}</td>
+            <td>{{ estudiante.email }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
