@@ -607,24 +607,7 @@ Educativo y de Aprendizaje Personal
     ```bash
     python manage.py startapp estudiantes
 
-23. en la aplicación estudiante vamos a crear una urls.py
-    ```bash
-    from django.urls import path
-    from . import views
-
-    urlpatterns = [
-        path('', views.lista_estudiantes, name='lista_estudiantes'),
-    ]
-24. en la aplicación estudiante views.py 
-    ```bash
-    from django.shortcuts import render
-    from .models import Estudiante
-
-    def lista_estudiantes(request):
-        estudiantes = Estudiante.objects.all()
-        return render(request, 'estudiantes/lista_estudiantes.html', {'estudiantes': estudiantes})
-
-25. Creamos en estudiante/models.py 
+23. Creamos en estudiantes/models.py 
     ```bash
     from django.db import models
 
@@ -636,20 +619,58 @@ Educativo y de Aprendizaje Personal
 
         def __str__(self):
             return f"{self.nombre} {self.apellido}"
+24. Hacemos las migraciones correspondiente
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
 
-26. Creamos en estudiantes la carpeta templates/estudiantes y el archivo lista_estudiantes.html
+25. EN aplicacion estudiantes creo un templates/estudiantes/lista_estudiantes.html
     ```bash
     {% extends 'base.html' %}
     {% block title %}Lista de Estudiantes{% endblock %}
     {% block content %}
-    <h1>Estudiantes</h1>
-    <ul>
-        {% for estudiante in estudiantes %}
-        <li>{{ estudiante.nombre }} {{ estudiante.apellido }} - {{ estudiante.email }}</li>
-        {% endfor %}
-    </ul>
+    <h1 class="my-4">Estudiantes</h1>
+    <table class="table table-bordered table-striped" style="border-radius: 10px; overflow: hidden;">
+        <!-- Encabezado con bordes redondeados -->
+        <thead class="bg-dark text-white" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for estudiante in estudiantes %}
+            <tr>
+                <td>{{ estudiante.nombre }}</td>
+                <td>{{ estudiante.apellido }}</td>
+                <td>{{ estudiante.email }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     {% endblock %}
-27. proyecto_educativo/setting
+
+26. en la aplicación estudiantes/views.py , en la vista importo el modelo y lo renderizo, y creo la función lista_estudiantes
+    ```bash
+    from django.shortcuts import render
+    from .models import Estudiante
+
+    def lista_estudiantes(request):
+        estudiantes = Estudiante.objects.all()
+        return render(request, 'estudiantes/lista_estudiantes.html', {'estudiantes': estudiantes})
+
+27. en la aplicación estudiante vamos a crear una urls.py, llamamos las vistas, e invoco la función  lista_estudiantes
+    ```bash
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('', views.lista_estudiantes, name='lista_estudiantes'),
+    ]
+
+  
+28. proyecto_educativo/setting.py agregamos 'estudiantes',
     ```bash
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -662,12 +683,24 @@ Educativo y de Aprendizaje Personal
         'estudiantes',
         'bootstrap4',
     ]
-28. Acciones de Migracion
+29. proyecto_educativo/urls.py
+    ```bash
+    from django.contrib import admin
+    from django.urls import path, include
+    from principal import views
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('', include('principal.urls')),  # Inicio
+        path('estudiantes/', include('estudiantes.urls')),  # Estudiantes
+    ]
+
+29. Acciones de Migracion
     ```bash
     python manage.py makemigrations
     python manage.py migrate
 
-29. Llenamos datos 
+30. Llenamos datos  en la base de datos
     ```bash
     python manage.py shell
 
@@ -686,6 +719,105 @@ Educativo y de Aprendizaje Personal
 
     print("Estudiantes cargados exitosamente.")
 
+31. estudiantes/admin.py 
+    ```bash
+    from django.contrib import admin
+    from .models import Estudiante
+    # Register your models here.
+    admin.site.register(Estudiante)
+
+32. Activamos el servidor
+    ```bash
+    python manage.py runserver
+
+33. Verificamos las paginas http://127.0.0.1:8000/ y http://127.0.0.1:8000/admin
+    ```bash
+    admin
+    admin1234
+
+34. Tenemos que estar en la carpeta principal de principal proyecto_educativo
+    ```bash
+    cd proyecto_educativo
+35. Creamos la aplicación cursos
+    ```bash
+    python manage.py startapp cursos
+
+36. proyecto_eductativo/settings.py
+    ```bash
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'principal',
+        'estudiantes',
+        'cursos',
+        'bootstrap4',
+    ]
+37. No vamos cursos/models.py
+    ```bash
+    from django.db import models
+
+    class Curso(models.Model):
+        nombre = models.CharField(max_length=150)
+        descripcion = models.TextField()
+        duracion = models.PositiveIntegerField(help_text="Duración en horas")
+
+        def __str__(self):
+            return self.nombre
+
+38. Ahora ejecutamos las migraciones
+     ```bash
+     python manage.py makemigrations
+     python manage.py migrate
+
+39. creamos el templates/listas_cursos.html
+    ```bash
+    {% extends 'base.html' %}
+    {% block title %}Lista de Cursos{% endblock %}
+    {% block content %}
+    <h1 class="mt-4">Cursos</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" style="border-radius: 10px; overflow: hidden;">
+            <!-- Encabezado con bordes redondeados -->
+            <thead class="bg-dark text-white" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Duración (horas)</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for curso in cursos %}
+                <tr>
+                    <td>{{ curso.nombre }}</td>
+                    <td>{{ curso.duracion }}</td>
+                    <td>{{ curso.descripcion }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
+40. Configurar la vista de cursos/views.py
+    ```bash
+    from django.shortcuts import render
+    from .models import Curso
+
+    def lista_cursos(request):
+        cursos = Curso.objects.all()
+        return render(request, 'cursos/lista_cursos.html', {'cursos': cursos})
+
+41. Agregale a cursos una urls.py  cursos/urls.py
+    ```bash
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('', views.lista_cursos, name='lista_cursos'),
+    ]
 
 
 
