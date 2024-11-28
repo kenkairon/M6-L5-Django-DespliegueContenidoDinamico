@@ -117,9 +117,10 @@ Educativo y de Aprendizaje Personal
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+        <!-- SweetAlert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         {% bootstrap_css %}
     </head>
-
     <body class="bg-light">
         <!-- Header -->
         <header class="navbar navbar-expand-lg navbar-dark bg-primary p-3">
@@ -136,7 +137,7 @@ Educativo y de Aprendizaje Personal
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="custom-nav-item rounded-sm" href="#">
+                        <a id="logout" class="custom-nav-item rounded-sm" href="javascript:void(0);">
                             <i class="bi bi-box-arrow-right"></i> Cerrar sesión
                         </a>
                     </li>
@@ -229,9 +230,12 @@ Educativo y de Aprendizaje Personal
             </div>
         </footer>
         {% bootstrap_javascript jquery="full" %}
+        <!-- JavaScript principal -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{% static 'js/main.js' %}" defer></script>
     </body>
-    </html>
 
+</html>
 ## Creación de vistas y modelos
 
 12. principal/views.py
@@ -412,6 +416,90 @@ Educativo y de Aprendizaje Personal
         /* Rotación ligera del icono al pasar el mouse */
     }
 
+    /* Estilos personalizados para el SweetAlert */
+    .custom-popup {
+        border-radius: 10px;
+        /* Bordes redondeados */
+        font-family: 'Poppins', sans-serif;
+        /* Fuente personalizada */
+    }
+
+    .custom-title {
+        color: #0062cc;
+        /* Color del título */
+        font-weight: bold;
+        /* Negrita en el título */
+    }
+
+    .custom-confirm-button {
+        background-color: #28a745;
+        /* Color de fondo verde */
+        border-color: #28a745;
+        /* Borde verde */
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        /* Bordes redondeados en el botón */
+        padding: 10px 20px;
+        /* Más relleno en el botón */
+    }
+
+    .custom-cancel-button {
+        background-color: #dc3545;
+        /* Color de fondo rojo */
+        border-color: #dc3545;
+        /* Borde rojo */
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 10px 20px;
+    }
+
+    /* Aumentar el tamaño de los iconos */
+    .swal2-icon {
+        font-size: 40px;
+        /* Aumenta el tamaño del icono */
+        transition: transform 0.5s ease-in-out;
+        /* Añade una transición suave para el efecto */
+    }
+
+    /* Estilo para girar el icono de advertencia como manecillas de reloj */
+    .rotate-icon-clockwise {
+        animation: rotateClockwise 2s infinite linear;
+        /* Gira en sentido horario */
+    }
+
+    /* Animación de rotación similar a las manecillas del reloj */
+    @keyframes rotateClockwise {
+        0% {
+            transform: rotate(0deg);
+            /* Empieza en 0 grados */
+        }
+
+        100% {
+            transform: rotate(360deg);
+            /* Completa una vuelta completa (360 grados) */
+        }
+    }
+
+    /* Estilo para girar el icono de advertencia como manecillas de reloj */
+    .rotate-icon-clockwise {
+        animation: rotateClockwise 2s infinite linear;
+        /* Gira en sentido horario */
+    }
+
+    /* Animación de rotación similar a las manecillas del reloj */
+    @keyframes rotateClockwise {
+        0% {
+            transform: rotate(0deg);
+            /* Empieza en 0 grados */
+        }
+
+        100% {
+            transform: rotate(360deg);
+            /* Completa una vuelta completa (360 grados) */
+        }
+    }
     /* Footer Styles */
     footer {
         background-color: #343a40;
@@ -464,3 +552,140 @@ Educativo y de Aprendizaje Personal
 18. Activamos el Servidor
     ```bash
     python manage.py runserver
+
+19. Agregamos js static/js e ingresamos estos datos javascript
+    ```bash
+    // Event listener para el botón de cerrar sesión
+    document.getElementById('logout').addEventListener('click', function (e) {
+        e.preventDefault(); // Evita la acción por defecto de seguir el enlace
+
+        // Mostrar el mensaje de confirmación usando SweetAlert
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Deseas cerrar sesión?",
+            iconHtml: '<i class="bi bi-clock-fill" style="font-size: 80px; color: #f39c12;"></i>', // Icono de Bootstrap
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cerrar sesión',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                popup: 'custom-popup', // Personaliza el cuadro de la alerta
+                title: 'custom-title', // Personaliza el título
+                confirmButton: 'custom-confirm-button', // Personaliza el botón de confirmar
+                cancelButton: 'custom-cancel-button' // Personaliza el botón de cancelar
+            },
+            willOpen: () => {
+                // Añadir la clase de rotación tipo manecillas de reloj al icono cuando se abre la alerta
+                const icon = document.querySelector('.swal2-icon');
+                if (icon) {
+                    icon.classList.add('rotate-icon-clockwise'); // Añadir la clase de rotación tipo reloj
+                }
+            },
+            willClose: () => {
+                // Eliminar la clase de rotación cuando la alerta se cierre
+                const icon = document.querySelector('.swal2-icon');
+                if (icon) {
+                    icon.classList.remove('rotate-icon-clockwise'); // Eliminar la clase de rotación
+                }
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Añadir un retraso antes de redirigir para que el usuario tenga tiempo de ver la alerta
+                setTimeout(() => {
+                    window.location.href = '/logout'; // Cambia '/logout' por la URL real de logout
+                }, 1000); // Retraso de 1000 milisegundos (1 segundo)
+            }
+        });
+    });
+
+20. en el templates principal vamos agregar un la carpeta include
+
+21. Vamos a entrar a la carpete proyecto_educativo
+    ```bash
+    cd proyecto_educativo
+
+22. Vamos a crear una aplicación llamada estudiantes
+    ```bash
+    python manage.py startapp estudiantes
+
+23. en la aplicación estudiante vamos a crear una urls.py
+    ```bash
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('', views.lista_estudiantes, name='lista_estudiantes'),
+    ]
+24. en la aplicación estudiante views.py 
+    ```bash
+    from django.shortcuts import render
+    from .models import Estudiante
+
+    def lista_estudiantes(request):
+        estudiantes = Estudiante.objects.all()
+        return render(request, 'estudiantes/lista_estudiantes.html', {'estudiantes': estudiantes})
+
+25. Creamos en estudiante/models.py 
+    ```bash
+    from django.db import models
+
+    class Estudiante(models.Model):
+        nombre = models.CharField(max_length=100)
+        apellido = models.CharField(max_length=100)
+        edad = models.PositiveIntegerField()
+        email = models.EmailField(unique=True)
+
+        def __str__(self):
+            return f"{self.nombre} {self.apellido}"
+
+26. Creamos en estudiantes la carpeta templates/estudiantes y el archivo lista_estudiantes.html
+    ```bash
+    {% extends 'base.html' %}
+    {% block title %}Lista de Estudiantes{% endblock %}
+    {% block content %}
+    <h1>Estudiantes</h1>
+    <ul>
+        {% for estudiante in estudiantes %}
+        <li>{{ estudiante.nombre }} {{ estudiante.apellido }} - {{ estudiante.email }}</li>
+        {% endfor %}
+    </ul>
+    {% endblock %}
+27. proyecto_educativo/setting
+    ```bash
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'principal',
+        'estudiantes',
+        'bootstrap4',
+    ]
+28. Acciones de Migracion
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+
+29. Llenamos datos 
+    ```bash
+    python manage.py shell
+
+    from estudiantes.models import Estudiante
+
+    datos_estudiantes = [
+        {"nombre": "Juan", "apellido": "Pérez", "edad": 20, "email": "juan.perez@gmail.com"},
+        {"nombre": "Ana", "apellido": "Gómez", "edad": 22, "email": "ana.gomez@gmail.com"},
+        {"nombre": "Carlos", "apellido": "López", "edad": 21, "email": "carlos.lopez@gmail.com"},
+        {"nombre": "María", "apellido": "Martínez", "edad": 23, "email": "maria.martinez@gmail.com"},
+        {"nombre": "Luis", "apellido": "Fernández", "edad": 19, "email": "luis.fernandez@gmail.com"},
+    ]
+
+    for dato in datos_estudiantes:
+        Estudiante.objects.create(**dato)
+
+    print("Estudiantes cargados exitosamente.")
+
+
+
+
