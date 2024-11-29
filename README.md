@@ -790,7 +790,24 @@ Educativo y de Aprendizaje Personal
      python manage.py makemigrations
      python manage.py migrate
 
-41. creamos el templates/cursos/listas_cursos.html
+41. Poblamos la base de datos cursos
+    ```bash
+    from cursos.models import Cursos
+
+    datos_cursos = [
+        {"nombre": "Matemáticas", "descripcion": "Curso avanzado de matemáticas.", "duracion": 120},
+        {"nombre": "Historia", "descripcion": "Estudio de las civilizaciones antiguas.", "duracion": 90},
+        {"nombre": "Programación", "descripcion": "Introducción a la programación en Python.", "duracion": 150},
+        {"nombre": "Inglés", "descripcion": "Curso intensivo de inglés intermedio.", "duracion": 100},
+        {"nombre": "Ciencias", "descripcion": "Curso de biología y química básica.", "duracion": 80},
+    ]
+
+    for dato in datos_cursos:
+        Cursos.objects.create(**dato)
+
+    print("Cursos cargados exitosamente.")
+
+42. creamos el templates/cursos/listas_cursos.html
     ```bash
     {% extends 'base.html' %}
     {% block title %}Lista de Cursos{% endblock %}
@@ -818,7 +835,7 @@ Educativo y de Aprendizaje Personal
         </table>
     </div>
     {% endblock %}
-42. Configurar la vista de cursos/views.py
+43. Configurar la vista de cursos/views.py
     ```bash
     from django.shortcuts import render
     from .models import Curso
@@ -827,7 +844,7 @@ Educativo y de Aprendizaje Personal
         cursos = Curso.objects.all()
         return render(request, 'cursos/lista_cursos.html', {'cursos': cursos})
 
-43. Agregale a cursos una urls.py  cursos/urls.py
+44. Agregale a cursos una urls.py  cursos/urls.py
     ```bash
     from django.urls import path
     from . import views
@@ -836,24 +853,24 @@ Educativo y de Aprendizaje Personal
         path('', views.lista_cursos, name='lista_cursos'),
     ]
 
-44. Trabajaremos cursos/admin.py
+45. Trabajaremos cursos/admin.py
     ```bash
     from .models import Curso
     # Register your models here.
     admin.site.register(Curso)
 
-45. Visitamos la página http://127.0.0.1:8000/admin 
+46. Visitamos la página http://127.0.0.1:8000/admin 
 
 
-46. Tenemos que estar en la carpeta principal de principal proyecto_educativo
+47. Tenemos que estar en la carpeta principal de principal proyecto_educativo
     ```bash
     cd proyecto_educativo
 
-47. Creamos la aplicación reportes
+48. Creamos la aplicación reportes
     ```bash
     python manage.py startapp reportes
 
-38. proyecto_eductativo/settings.py
+49. proyecto_eductativo/settings.py
     ```bash
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -868,7 +885,7 @@ Educativo y de Aprendizaje Personal
         'reportes',
         'bootstrap4',
     ]
-39. No vamos reportes/models.py
+50. No vamos reportes/models.py
     ```bash
     from django.db import models
 
@@ -880,12 +897,27 @@ Educativo y de Aprendizaje Personal
     def __str__(self):
         return self.titulo
 
-40. Ahora ejecutamos las migraciones
+51. Ahora ejecutamos las migraciones
      ```bash
      python manage.py makemigrations
      python manage.py migrate
 
-41. creamos el templates/reportes/listas_reportes.html
+52. Ahora Poblamos la base de datos con Reportes 
+    ```bash
+    from reportes.models import Reporte
+    datos_reportes = [
+        {"titulo": "Reporte de Estudiantes", "contenido": "Este es un reporte detallado de estudiantes."},
+        {"titulo": "Progreso de Cursos", "contenido": "Reporte sobre el progreso en los cursos actuales."},
+        {"titulo": "Evaluación Mensual", "contenido": "Resumen de evaluaciones realizadas en el último mes."},
+        {"titulo": "Reporte Anual", "contenido": "Resumen anual de todas las actividades realizadas."},
+        {"titulo": "Estadísticas Generales", "contenido": "Estadísticas generales de la plataforma educativa."},
+    ]
+
+    for dato in datos_reportes:
+        Reporte.objects.create(**dato)
+
+    print("Reportes cargados exitosamente.")
+53. creamos el templates/reportes/listas_reportes.html
     ```bash
     <table class="table table-bordered table-striped" style="border-radius: 10px; overflow: hidden;">
         <!-- Encabezado con bordes redondeados -->
@@ -908,7 +940,7 @@ Educativo y de Aprendizaje Personal
         <i class="bi bi-arrow-clockwise"></i> Volver
     </a>
     {% endblock %}
-42. Configurar la vista de reportes/views.py
+54. Configurar la vista de reportes/views.py
     ```bash
     from django.shortcuts import render
     from .models import Reporte
@@ -917,7 +949,7 @@ Educativo y de Aprendizaje Personal
         reportes = Reporte.objects.all()
         return render(request, 'reportes/lista_reportes.html', {'reportes': reportes})
 
-43. Agregale a cursos una urls.py  reportes/urls.py
+55. Agregale a cursos una urls.py  reportes/urls.py
     ```bash
     from django.urls import path
     from . import views
@@ -926,18 +958,18 @@ Educativo y de Aprendizaje Personal
         path('', views.lista_reportes, name='lista_reportes'),
     ]
 
-44. Trabajaremos reportes/admin.py
+56. Trabajaremos reportes/admin.py
     ```bash
     from django.contrib import admin
     from .models import Reporte
     # Register your models here.
     .site.register(Reporte)
 
-45. Corremos el Servidor 
+57. Corremos el Servidor 
     ```bash
     python manage.py runserver
 
-45. Visitamos la página http://127.0.0.1:8000/admin y http://127.0.0.1:8000 
+58. Visitamos la página http://127.0.0.1:8000/admin y http://127.0.0.1:8000 
 
 
 
