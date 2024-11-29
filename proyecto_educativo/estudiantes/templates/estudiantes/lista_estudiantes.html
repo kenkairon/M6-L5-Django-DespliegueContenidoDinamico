@@ -4,11 +4,11 @@
 <h1 class="my-4">Estudiantes</h1>
 
 <table class="table table-bordered table-striped" style="border-radius: 10px; overflow: hidden;">
-    <!-- Encabezado con bordes redondeados -->
     <thead class="bg-dark text-white" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
         <tr>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
+            <th scope="col">Edad</th>
             <th scope="col">Email</th>
         </tr>
     </thead>
@@ -17,12 +17,22 @@
         <tr>
             <td>{{ estudiante.nombre }}</td>
             <td>{{ estudiante.apellido }}</td>
+            <td>{{ estudiante.edad }}</td>
             <td>{{ estudiante.email }}</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
 <a href="{% url 'index' %}" class="btn btn-success">
     <i class="bi bi-arrow-clockwise"></i> Volver
 </a>
+
+<!-- Botón para abrir el modal -->
+<button type="button" class="btn btn-info my-3" data-toggle="modal" data-target="#modalEstadisticas">
+    <i class="bi bi-graph-up">Ver Estadísticas de Edad</i>
+</button>
+
+{% include 'include/modal_estudiante.html' %}
+
 {% endblock %}
