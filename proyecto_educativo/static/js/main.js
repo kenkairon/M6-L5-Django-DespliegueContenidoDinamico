@@ -6,7 +6,7 @@ document.getElementById('logout').addEventListener('click', function (e) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: "¿Deseas cerrar sesión?",
-        iconHtml: '<i class="bi bi-clock-fill" style="font-size: 80px; color: #f39c12;"></i>', // Icono de Bootstrap
+        iconHtml: '<i class="bi bi-exclamation-circle-fill" style="font-size: 40px; color: #f39c12;"></i>', // Icono de Bootstrap
         showCancelButton: true,
         confirmButtonText: 'Sí, cerrar sesión',
         cancelButtonText: 'Cancelar',

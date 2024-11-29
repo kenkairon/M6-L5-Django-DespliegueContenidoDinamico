@@ -242,11 +242,23 @@ Educativo y de Aprendizaje Personal
     ```bash
     from django.shortcuts import render
 
-    # Create your views here.
-    def nombre(request):
-        return render(request, 'index.html', {'messages':'Hola y bienvenido'})
+    def index(request):
+    context = {
+        'message': 'Bienvenido a EduDashboard',
+        'description': 'Esta plataforma te ayuda a organizar información educativa de manera sencilla.',
+        'cta': 'Explorar Estudiantes',
+        'cta_link': '/estudiantes/'
+    }
+    return render(request, 'principal/index.html', context)
 
-13. proyecto_educativo/urls.py
+13. principal/urls.py
+    ```bash
+    from django.urls import path
+    from . import views
+    urlpatterns = [
+        path('', views.index, name='index'),
+    ]
+14. proyecto_educativo/urls.py
     ```bash
     from django.contrib import admin
     from django.urls import path, include
@@ -256,8 +268,8 @@ Educativo y de Aprendizaje Personal
         path('admin/', admin.site.urls),
         path('',views.nombre, name='nombre'),
     ]
-14. python manage.py migrate
-15. Creamos en la aplicacion  principal/templates/index.html
+15. python manage.py migrate
+16. Creamos en la aplicacion  principal/templates/index.html
     ```bash
     {% extends 'base.html' %}
     {% block title %}Inicio{% endblock %}
@@ -270,7 +282,8 @@ Educativo y de Aprendizaje Personal
         <p class="alert alert-success">Este es un proyecto educativo con Django.</p>
     </div>
     {% endblock %}
-16. En el proyecto_educativo/settings.py para poder trabajar con la carpeta static y los csss
+
+17. En el proyecto_educativo/settings.py para poder trabajar con la carpeta static y los csss
     ```bash
         import os
         # Internationalization
@@ -291,7 +304,7 @@ Educativo y de Aprendizaje Personal
         STATIC_URL = 'static/'
         STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-17. crear la carpeta static/css/styles.css
+18. crear la carpeta static/css/styles.css
     ```bash
     /* Estilo para los elementos del menú sin la clase nav-link */
     .custom-nav-item {
@@ -549,11 +562,11 @@ Educativo y de Aprendizaje Personal
     footer {
         box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     }
-18. Activamos el Servidor
+19. Activamos el Servidor
     ```bash
     python manage.py runserver
 
-19. Agregamos js static/js e ingresamos estos datos javascript
+20. Agregamos js static/js e ingresamos estos datos javascript
     ```bash
     // Event listener para el botón de cerrar sesión
     document.getElementById('logout').addEventListener('click', function (e) {
@@ -597,17 +610,17 @@ Educativo y de Aprendizaje Personal
         });
     });
 
-20. en el templates principal vamos agregar un la carpeta include
+21. en el templates principal vamos agregar un la carpeta include
 
-21. Vamos a entrar a la carpete proyecto_educativo
+22. Vamos a entrar a la carpete proyecto_educativo
     ```bash
     cd proyecto_educativo
 
-22. Vamos a crear una aplicación llamada estudiantes
+23. Vamos a crear una aplicación llamada estudiantes
     ```bash
     python manage.py startapp estudiantes
 
-23. Creamos en estudiantes/models.py 
+24. Creamos en estudiantes/models.py 
     ```bash
     from django.db import models
 
@@ -619,12 +632,12 @@ Educativo y de Aprendizaje Personal
 
         def __str__(self):
             return f"{self.nombre} {self.apellido}"
-24. Hacemos las migraciones correspondiente
+25. Hacemos las migraciones correspondiente
     ```bash
     python manage.py makemigrations
     python manage.py migrate
 
-25. EN aplicacion estudiantes creo un templates/estudiantes/lista_estudiantes.html
+26. EN aplicacion estudiantes creo un templates/estudiantes/lista_estudiantes.html
     ```bash
     {% extends 'base.html' %}
     {% block title %}Lista de Estudiantes{% endblock %}
@@ -651,7 +664,7 @@ Educativo y de Aprendizaje Personal
     </table>
     {% endblock %}
 
-26. en la aplicación estudiantes/views.py , en la vista importo el modelo y lo renderizo, y creo la función lista_estudiantes
+27. en la aplicación estudiantes/views.py , en la vista importo el modelo y lo renderizo, y creo la función lista_estudiantes
     ```bash
     from django.shortcuts import render
     from .models import Estudiante
@@ -660,7 +673,7 @@ Educativo y de Aprendizaje Personal
         estudiantes = Estudiante.objects.all()
         return render(request, 'estudiantes/lista_estudiantes.html', {'estudiantes': estudiantes})
 
-27. en la aplicación estudiante vamos a crear una urls.py, llamamos las vistas, e invoco la función  lista_estudiantes
+28. en la aplicación estudiante vamos a crear una urls.py, llamamos las vistas, e invoco la función  lista_estudiantes
     ```bash
     from django.urls import path
     from . import views
@@ -670,7 +683,7 @@ Educativo y de Aprendizaje Personal
     ]
 
   
-28. proyecto_educativo/setting.py agregamos 'estudiantes',
+29. proyecto_educativo/setting.py agregamos 'estudiantes',
     ```bash
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -683,7 +696,7 @@ Educativo y de Aprendizaje Personal
         'estudiantes',
         'bootstrap4',
     ]
-29. proyecto_educativo/urls.py
+30. proyecto_educativo/urls.py
     ```bash
     from django.contrib import admin
     from django.urls import path, include
@@ -695,12 +708,12 @@ Educativo y de Aprendizaje Personal
         path('estudiantes/', include('estudiantes.urls')),  # Estudiantes
     ]
 
-29. Acciones de Migracion
+31. Acciones de Migracion
     ```bash
     python manage.py makemigrations
     python manage.py migrate
 
-30. Llenamos datos  en la base de datos
+32. Llenamos datos  en la base de datos
     ```bash
     python manage.py shell
 
@@ -719,30 +732,36 @@ Educativo y de Aprendizaje Personal
 
     print("Estudiantes cargados exitosamente.")
 
-31. estudiantes/admin.py 
+33. Creamos el superusuario
+    ```bash
+    createsuperuser 
+
+    
+
+33. estudiantes/admin.py 
     ```bash
     from django.contrib import admin
     from .models import Estudiante
     # Register your models here.
     admin.site.register(Estudiante)
 
-32. Activamos el servidor
+34. Activamos el servidor
     ```bash
     python manage.py runserver
 
-33. Verificamos las paginas http://127.0.0.1:8000/ y http://127.0.0.1:8000/admin
+35. Verificamos las paginas http://127.0.0.1:8000/ y http://127.0.0.1:8000/admin
     ```bash
     admin
     admin1234
 
-34. Tenemos que estar en la carpeta principal de principal proyecto_educativo
+36. Tenemos que estar en la carpeta principal de principal proyecto_educativo
     ```bash
     cd proyecto_educativo
-35. Creamos la aplicación cursos
+37. Creamos la aplicación cursos
     ```bash
     python manage.py startapp cursos
 
-36. proyecto_eductativo/settings.py
+38. proyecto_eductativo/settings.py
     ```bash
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -756,7 +775,7 @@ Educativo y de Aprendizaje Personal
         'cursos',
         'bootstrap4',
     ]
-37. No vamos cursos/models.py
+39. No vamos cursos/models.py
     ```bash
     from django.db import models
 
@@ -768,12 +787,12 @@ Educativo y de Aprendizaje Personal
         def __str__(self):
             return self.nombre
 
-38. Ahora ejecutamos las migraciones
+40. Ahora ejecutamos las migraciones
      ```bash
      python manage.py makemigrations
      python manage.py migrate
 
-39. creamos el templates/listas_cursos.html
+41. creamos el templates/cursos/listas_cursos.html
     ```bash
     {% extends 'base.html' %}
     {% block title %}Lista de Cursos{% endblock %}
@@ -801,7 +820,7 @@ Educativo y de Aprendizaje Personal
         </table>
     </div>
     {% endblock %}
-40. Configurar la vista de cursos/views.py
+42. Configurar la vista de cursos/views.py
     ```bash
     from django.shortcuts import render
     from .models import Curso
@@ -810,7 +829,7 @@ Educativo y de Aprendizaje Personal
         cursos = Curso.objects.all()
         return render(request, 'cursos/lista_cursos.html', {'cursos': cursos})
 
-41. Agregale a cursos una urls.py  cursos/urls.py
+43. Agregale a cursos una urls.py  cursos/urls.py
     ```bash
     from django.urls import path
     from . import views
@@ -818,6 +837,16 @@ Educativo y de Aprendizaje Personal
     urlpatterns = [
         path('', views.lista_cursos, name='lista_cursos'),
     ]
+
+44. Trabajaremos cursos/admin.py
+    ```bash
+    from .models import Curso
+    # Register your models here.
+    admin.site.register(Curso)
+
+
+
+
 
 
 
