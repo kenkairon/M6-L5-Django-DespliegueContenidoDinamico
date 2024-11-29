@@ -736,8 +736,6 @@ Educativo y de Aprendizaje Personal
     ```bash
     createsuperuser 
 
-    
-
 33. estudiantes/admin.py 
     ```bash
     from django.contrib import admin
@@ -843,6 +841,114 @@ Educativo y de Aprendizaje Personal
     from .models import Curso
     # Register your models here.
     admin.site.register(Curso)
+
+45. Visitamos la página http://127.0.0.1:8000/admin 
+
+
+46. Tenemos que estar en la carpeta principal de principal proyecto_educativo
+    ```bash
+    cd proyecto_educativo
+
+47. Creamos la aplicación reportes
+    ```bash
+    python manage.py startapp reportes
+
+38. proyecto_eductativo/settings.py
+    ```bash
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'principal',
+        'estudiantes',
+        'cursos',
+        'reportes',
+        'bootstrap4',
+    ]
+39. No vamos reportes/models.py
+    ```bash
+    from django.db import models
+
+    class Reporte(models.Model):
+        titulo = models.CharField(max_length=200)
+        contenido = models.TextField()
+        fecha_creacion = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.titulo
+
+40. Ahora ejecutamos las migraciones
+     ```bash
+     python manage.py makemigrations
+     python manage.py migrate
+
+41. creamos el templates/reportes/listas_reportes.html
+    ```bash
+    <table class="table table-bordered table-striped" style="border-radius: 10px; overflow: hidden;">
+        <!-- Encabezado con bordes redondeados -->
+        <thead class="bg-dark text-white" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <tr>
+                <th scope="col">Título</th>
+                <th scope="col">Fecha de Creación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reporte in reportes %}
+            <tr>
+                <td>{{ reporte.titulo }}</td>
+                <td>{{ reporte.fecha_creacion }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'index' %}" class="btn btn-success">
+        <i class="bi bi-arrow-clockwise"></i> Volver
+    </a>
+    {% endblock %}
+42. Configurar la vista de reportes/views.py
+    ```bash
+    from django.shortcuts import render
+    from .models import Reporte
+
+    def lista_reportes(request):
+        reportes = Reporte.objects.all()
+        return render(request, 'reportes/lista_reportes.html', {'reportes': reportes})
+
+43. Agregale a cursos una urls.py  reportes/urls.py
+    ```bash
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('', views.lista_reportes, name='lista_reportes'),
+    ]
+
+44. Trabajaremos reportes/admin.py
+    ```bash
+    from django.contrib import admin
+    from .models import Reporte
+    # Register your models here.
+    .site.register(Reporte)
+
+45. Corremos el Servidor 
+    ```bash
+    python manage.py runserver
+
+45. Visitamos la página http://127.0.0.1:8000/admin y http://127.0.0.1:8000 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
