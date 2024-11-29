@@ -18,7 +18,7 @@ Educativo y de Aprendizaje Personal
 
 - Python 3.9 o superior
 - Django 4.0 o superior
-- Bootstrap 5
+- Bootstrap 4
 
 ---
 
