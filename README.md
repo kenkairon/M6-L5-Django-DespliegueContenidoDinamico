@@ -71,7 +71,7 @@ Educativo y de Aprendizaje Personal
 
 ## Configuración del Proyecto
 
-10. Conectar el proyecto con la aplicación: Agregar 'principal' en la lista INSTALLED_APPS dentro del archivo proyecto_educativo/settings.py:
+10. Conectar el proyecto con la aplicación: Agregar 'principal' en la lista INSTALLED_APPS dentro del archivo proyecto_educativo/settings.py
 
     ```bash
     INSTALLED_APPS = [
